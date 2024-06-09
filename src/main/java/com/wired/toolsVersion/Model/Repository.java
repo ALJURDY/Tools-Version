@@ -1,15 +1,7 @@
 package com.wired.toolsVersion.Model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
-import net.bytebuddy.build.Plugin;
-import org.springframework.data.annotation.Id;
 
 import java.util.List;
 

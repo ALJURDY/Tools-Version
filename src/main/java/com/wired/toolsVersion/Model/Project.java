@@ -2,8 +2,6 @@ package com.wired.toolsVersion.Model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

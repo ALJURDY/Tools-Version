@@ -2,7 +2,6 @@ package com.wired.toolsVersion.Model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
 @Data
 @AllArgsConstructor
