@@ -1,28 +1,30 @@
 package com.wired.toolsVersion.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.util.List;
-
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "repository")
 public class Repository {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 255)
+    private String icon;
+
+    @Column(nullable = false, length = 50)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "project_id")
+    @Column(nullable = false)
+    private int percentage;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "project_id", nullable = false)
     private Project project;
-
-    @OneToMany(mappedBy = "repository", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Dependency> dependencies;
-
-    @OneToMany(mappedBy = "repository", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Plugin> plugins;
 }
-

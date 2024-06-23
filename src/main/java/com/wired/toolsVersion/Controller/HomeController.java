@@ -4,7 +4,10 @@ import com.wired.toolsVersion.Dto.ProjectDto;
 import com.wired.toolsVersion.Dto.RepositoryDto;
 import com.wired.toolsVersion.Service.ProjectService;
 import com.wired.toolsVersion.Service.RepositoryService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,5 +28,23 @@ public class HomeController {
     @GetMapping("/projects/{projectId}/repositories")
     public List<RepositoryDto> getRepositoriesByProjectId(@PathVariable Long projectId) {
         return repositoryService.getRepositoriesByProjectId(projectId);
+    }
+
+    @PostMapping
+    public ResponseEntity<ProjectDto> createProject(@Valid @RequestBody ProjectDto projectDto) {
+        ProjectDto createdProject = projectService.createProject(projectDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdProject);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProjectDto> updateProject(@PathVariable Long id, @Valid @RequestBody ProjectDto projectDto) {
+        ProjectDto updatedProject = projectService.updateProject(id, projectDto);
+        return ResponseEntity.ok(updatedProject);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProject(@PathVariable Long id) {
+        projectService.deleteProject(id);
+        return ResponseEntity.noContent().build();
     }
 }

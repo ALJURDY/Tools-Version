@@ -11,11 +11,12 @@ public class Dependency {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String icon;
     private String name;
-    private String usedVersion;
     private String currentVersion;
+    private String latestVersionUsed;
     private String latestRelease;
+    private int useCount;
 
     @ManyToOne
     @JoinColumn(name = "repository_id")

@@ -1,33 +1,77 @@
 package com.wired.toolsVersion.Service;
 
 import com.wired.toolsVersion.Dto.RepositoryDto;
+import com.wired.toolsVersion.Model.Project;
+import com.wired.toolsVersion.Model.Repository;
+import com.wired.toolsVersion.Repository.ProjectRepository;
+import com.wired.toolsVersion.Repository.RepositoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RepositoryService {
-    public List<RepositoryDto> getRepositoriesByProjectId(Long projectId) {
-        // Logic to retrieve repositories by project ID
-        return List.of(new RepositoryDto(1L, "Repo 1"), new RepositoryDto(2L, "Repo 2"));
-    }
+
+    @Autowired
+    private RepositoryRepository repositoryRepository;
+
+    @Autowired
+    private ProjectRepository projectRepository;
 
     public RepositoryDto getRepositoryById(Long id) {
-        // Logic to get a repository by its ID
-        return new RepositoryDto(id, "Repo " + id);
+        Repository repository = repositoryRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Repository not found"));
+        return convertToDto(repository);
+    }
+    public List<RepositoryDto> getRepositoriesByProjectId(Long projectId) {
+        return repositoryRepository.findByProjectId(projectId).stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
     }
 
+    @Transactional
     public RepositoryDto createRepository(RepositoryDto repositoryDto) {
-        // Logic to create a new repository
-        return repositoryDto;
+        Project project = projectRepository.findById(repositoryDto.getProjectId())
+                .orElseThrow(() -> new RuntimeException("Project not found"));
+
+        Repository repository = new Repository();
+        repository.setName(repositoryDto.getName());
+        repository.setIcon(repositoryDto.getIcon());
+        repository.setPercentage(repositoryDto.getPercentage());
+        repository.setProject(project);
+
+        repository = repositoryRepository.save(repository);
+        return convertToDto(repository);
     }
 
+    @Transactional
     public RepositoryDto updateRepository(Long id, RepositoryDto repositoryDto) {
-        // Logic to update a repository
-        return repositoryDto;
+        Repository repository = repositoryRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Repository not found"));
+
+        repository.setName(repositoryDto.getName());
+        repository.setIcon(repositoryDto.getIcon());
+        repository.setPercentage(repositoryDto.getPercentage());
+
+        repository = repositoryRepository.save(repository);
+        return convertToDto(repository);
     }
 
+    @Transactional
     public void deleteRepository(Long id) {
-        // Logic to delete a repository
+        repositoryRepository.deleteById(id);
+    }
+
+    private RepositoryDto convertToDto(Repository repository) {
+        RepositoryDto repositoryDto = new RepositoryDto();
+        repositoryDto.setId(repository.getId());
+        repositoryDto.setIcon(repository.getIcon());
+        repositoryDto.setName(repository.getName());
+        repositoryDto.setPercentage(repository.getPercentage());
+        repositoryDto.setProjectId(repository.getProject().getId());
+        return repositoryDto;
     }
 }
