@@ -43,6 +43,10 @@ public class RepositoryService {
         repository.setPercentage(repositoryDto.getPercentage());
         repository.setProject(project);
 
+        if (repositoryDto.getId() != null) {
+            throw new IllegalArgumentException("ID should not be set for new repositories");
+        }
+
         repository = repositoryRepository.save(repository);
         return convertToDto(repository);
     }

@@ -13,9 +13,12 @@ public class WebConfiguration {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/**")
-                        .allowedOrigins("http://localhost:4200")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
+                registry.addMapping("/**")
+                        .allowedOrigins("http://localhost:4200") // allow only from this origin
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // allow these methods
+                        .allowedHeaders("*") // allow all headers
+                        .allowCredentials(true) // allow credentials (cookies)
+                        .maxAge(3600); // max age of the pre-flight response
             }
         };
     }

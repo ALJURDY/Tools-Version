@@ -45,7 +45,7 @@ public class HomeControllerTest {
 
     @Test
     public void testGetRepositoriesByProjectId() {
-        List<RepositoryDto> repositories = List.of(new RepositoryDto(1L, "Repo 1", "icon", 50, 1L));
+        List<RepositoryDto> repositories = List.of(new RepositoryDto(1L, "icon", "Repo 1", 50, 1L));
         when(repositoryService.getRepositoriesByProjectId(1L)).thenReturn(repositories);
 
         List<RepositoryDto> result = homeController.getRepositoriesByProjectId(1L);

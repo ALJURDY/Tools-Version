@@ -13,21 +13,26 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/home")
+@RequestMapping("/")
 @RequiredArgsConstructor
 public class HomeController {
 
     private final ProjectService projectService;
     private final RepositoryService repositoryService;
 
-    @GetMapping("/projects")
+    @GetMapping("")
     public List<ProjectDto> getAllProjects() {
         return projectService.getAllProjects();
     }
 
-    @GetMapping("/projects/{projectId}/repositories")
+    @GetMapping("/{projectId}/repositories")
     public List<RepositoryDto> getRepositoriesByProjectId(@PathVariable Long projectId) {
         return repositoryService.getRepositoriesByProjectId(projectId);
+    }
+
+    @GetMapping("/{ProjectId}")
+    public ProjectDto getProjectById(@PathVariable Long ProjectId) {
+       return  projectService.getProjectById(ProjectId);
     }
 
     @PostMapping

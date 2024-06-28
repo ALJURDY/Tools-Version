@@ -33,6 +33,12 @@ public class ProjectService {
         Project project = new Project();
         project.setName(projectDto.getName());
 
+// Ensure ID is not being set manually
+        if (projectDto.getId() != null) {
+            throw new IllegalArgumentException("ID should not be set for new projects");
+        }
+        System.out.println("Creating project: " + project);
+
         project = projectRepository.save(project);
         return convertToDto(project);
     }
