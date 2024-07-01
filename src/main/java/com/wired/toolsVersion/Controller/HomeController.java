@@ -13,26 +13,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
 @RequiredArgsConstructor
 public class HomeController {
 
     private final ProjectService projectService;
     private final RepositoryService repositoryService;
 
-    @GetMapping("")
+    @GetMapping("/home")
     public List<ProjectDto> getAllProjects() {
         return projectService.getAllProjects();
     }
 
-    @GetMapping("/{projectId}/repositories")
+    @GetMapping("/home/{projectId}/repositories")
     public List<RepositoryDto> getRepositoriesByProjectId(@PathVariable Long projectId) {
         return repositoryService.getRepositoriesByProjectId(projectId);
     }
 
-    @GetMapping("/{ProjectId}")
-    public ProjectDto getProjectById(@PathVariable Long ProjectId) {
-       return  projectService.getProjectById(ProjectId);
+    @GetMapping("/{projectId}")
+    public ProjectDto getProjectById(@PathVariable Long projectId) { // Changed to projectId
+        return projectService.getProjectById(projectId);
     }
 
     @PostMapping
@@ -51,5 +50,11 @@ public class HomeController {
     public ResponseEntity<Void> deleteProject(@PathVariable Long id) {
         projectService.deleteProject(id);
         return ResponseEntity.noContent().build();
+    }
+    // Handle favicon requests
+    @GetMapping("/favicon.ico")
+    @ResponseBody
+    public void returnNoFavicon() {
+        // No operation, just to prevent errors on favicon requests
     }
 }
