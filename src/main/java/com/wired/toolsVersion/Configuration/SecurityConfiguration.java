@@ -23,11 +23,9 @@ public class SecurityConfiguration {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/user/register", "/home", "/home/**").permitAll()
+                        .requestMatchers("/login","/api/user/register", "/home", "/home/**").permitAll()
                         .anyRequest().authenticated()
-                )
-                .formLogin(withDefaults())
-                .httpBasic(withDefaults());
+                );
 
         return http.build();
     }
