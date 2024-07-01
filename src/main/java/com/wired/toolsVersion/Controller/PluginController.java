@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/plugins")
+@RequestMapping("/plugins")
 @RequiredArgsConstructor
 public class PluginController {
 
@@ -22,7 +22,7 @@ public class PluginController {
         return pluginService.getAllPlugins();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/plugins/{id}")
     public PluginDto getPluginById(@PathVariable Long id) {
         return pluginService.getPluginById(id);
     }
@@ -33,13 +33,13 @@ public class PluginController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPlugin);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/plugins/{id}")
     public ResponseEntity<PluginDto> updatePlugin(@PathVariable Long id, @Valid @RequestBody PluginDto pluginDto) {
         PluginDto updatedPlugin = pluginService.updatePlugin(id, pluginDto);
         return ResponseEntity.ok(updatedPlugin);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/plugins/{id}")
     public ResponseEntity<Void> deletePlugin(@PathVariable Long id) {
         pluginService.deletePlugin(id);
         return ResponseEntity.noContent().build();
