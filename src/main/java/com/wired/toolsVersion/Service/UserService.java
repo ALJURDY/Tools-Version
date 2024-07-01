@@ -4,6 +4,7 @@ import com.wired.toolsVersion.Model.UserEntity;
 import com.wired.toolsVersion.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,8 +19,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Optional<UserEntity> getUserById(Long id) {
-        return userRepository.findById(id);
+    public UserEntity findByUsername(String username) {
+        return userRepository.findByUsername(username).orElse(null);
     }
 
     public UserEntity saveUser(UserEntity user) {

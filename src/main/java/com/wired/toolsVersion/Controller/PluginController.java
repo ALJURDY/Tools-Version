@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/plugins")
+@RequestMapping("/plugins")
 @RequiredArgsConstructor
 public class PluginController {
 

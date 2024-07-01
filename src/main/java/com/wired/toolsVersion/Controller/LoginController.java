@@ -3,7 +3,6 @@ package com.wired.toolsVersion.Controller;
 import com.wired.toolsVersion.Model.UserEntity;
 import com.wired.toolsVersion.Service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,11 +14,6 @@ public class LoginController {
 
     public LoginController(UserService userService) {
         this.userService = userService;
-    }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
     }
 
     @PostMapping("/api/user/register")
