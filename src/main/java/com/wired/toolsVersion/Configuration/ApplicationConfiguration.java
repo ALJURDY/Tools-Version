@@ -1,6 +1,7 @@
 package com.wired.toolsVersion.Configuration;
 
 import com.wired.toolsVersion.User.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,12 +16,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class ApplicationConfiguration {
 
     private final UserRepository userRepository;
 
     @Bean
-    public final UserDetailsService userDetailsService() {
+    public UserDetailsService userDetailsService() {
         return username -> userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
     @Bean

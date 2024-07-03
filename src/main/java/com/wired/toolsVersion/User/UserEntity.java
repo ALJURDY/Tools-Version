@@ -19,7 +19,7 @@ import java.util.List;
 @Entity
 public class UserEntity implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue()
     private Long id;
 
     @Column(nullable = false, unique = true)
