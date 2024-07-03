@@ -1,4 +1,4 @@
-package com.wired.toolsVersion.Dto;
+package com.wired.toolsVersion.User;
 
 import lombok.Data;
 

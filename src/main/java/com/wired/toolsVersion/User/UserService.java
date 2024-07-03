@@ -1,7 +1,5 @@
-package com.wired.toolsVersion.Service;
+package com.wired.toolsVersion.User;
 
-import com.wired.toolsVersion.Model.UserEntity;
-import com.wired.toolsVersion.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +12,7 @@ public class UserService {
 
 
     public UserEntity findByUsername(String username) {
-        return userRepository.findByUsername(username).orElse(null);
+        return userRepository.findByEmail(username).orElse(null);
     }
 
     public UserEntity saveUser(UserEntity user) {

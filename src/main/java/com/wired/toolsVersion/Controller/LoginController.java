@@ -1,7 +1,7 @@
 package com.wired.toolsVersion.Controller;
 
-import com.wired.toolsVersion.Model.UserEntity;
-import com.wired.toolsVersion.Service.UserService;
+import com.wired.toolsVersion.User.UserEntity;
+import com.wired.toolsVersion.User.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

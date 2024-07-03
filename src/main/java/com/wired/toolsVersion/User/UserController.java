@@ -1,14 +1,8 @@
-package com.wired.toolsVersion.Controller;
+package com.wired.toolsVersion.User;
 
-import com.wired.toolsVersion.Dto.ProjectDto;
-import com.wired.toolsVersion.Dto.UserDTO;
-import com.wired.toolsVersion.Model.UserEntity;
-import com.wired.toolsVersion.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/user")
