@@ -29,8 +29,6 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableMethodSecurity
 public class SecurityConfiguration {
     private static final String[] WHITE_LIST_URL = { "/api/v1/auth/**",
-            "/error",
-            "/account",
             "/v1/api-docs",
             "/v1/api-docs/**",
             "/swagger-resources",

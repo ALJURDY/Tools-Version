@@ -1,5 +1,6 @@
 package com.wired.toolsVersion.Authentication;
 
+import com.wired.toolsVersion.User.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequest {
-    public String username;
-    public String password;
-    public String userEmail;
+    private String username;
+    private String password;
+    private String userEmail;
+    private Role role;
 }
