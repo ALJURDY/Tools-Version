@@ -18,7 +18,7 @@ public class RepositoryDto {
     private String name;
 
     @NotNull
-    private Integer percentage;
+    private String percentage;
 
     @NotNull
     private Long projectId;

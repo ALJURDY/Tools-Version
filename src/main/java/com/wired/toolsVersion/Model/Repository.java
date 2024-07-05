@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,16 +18,32 @@ public class Repository {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 255)
+    @Column(nullable = false)
     private String icon;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private int percentage;
+    @Column(nullable = false, length = 10)
+    private String percentage;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "project_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "id_project", nullable = false)
     private Project project;
+
+    @ManyToMany
+    @JoinTable(
+            name = "RepoDependency",
+            joinColumns = @JoinColumn(name = "id_repository"),
+            inverseJoinColumns = @JoinColumn(name = "id_dependency")
+    )
+    private List<Dependency> dependencies;
+
+    @ManyToMany
+    @JoinTable(
+            name = "RepoPlugin",
+            joinColumns = @JoinColumn(name = "id_repository"),
+            inverseJoinColumns = @JoinColumn(name = "id_plugin")
+    )
+    private List<Plugin> plugins;
 }

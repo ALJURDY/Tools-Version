@@ -42,7 +42,7 @@ public class PluginService {
         plugin.setCurrentVersion(pluginDto.getCurrentVersion());
         plugin.setLatestVersionUsed(pluginDto.getLatestVersionUsed());
         plugin.setLatestRelease(pluginDto.getLatestRelease());
-        plugin.setUseCount(pluginDto.getUseCount());
+        plugin.setUsage(pluginDto.getUsage());
 
         plugin = pluginRepository.save(plugin);
         return convertToDto(plugin);
@@ -58,7 +58,7 @@ public class PluginService {
         plugin.setCurrentVersion(pluginDto.getCurrentVersion());
         plugin.setLatestVersionUsed(pluginDto.getLatestVersionUsed());
         plugin.setLatestRelease(pluginDto.getLatestRelease());
-        plugin.setUseCount(pluginDto.getUseCount());
+        plugin.setUsage(pluginDto.getUsage());
 
         plugin = pluginRepository.save(plugin);
         return convertToDto(plugin);
@@ -77,7 +77,7 @@ public class PluginService {
         pluginDto.setCurrentVersion(plugin.getCurrentVersion());
         pluginDto.setLatestVersionUsed(plugin.getLatestVersionUsed());
         pluginDto.setLatestRelease(plugin.getLatestRelease());
-        pluginDto.setUseCount(plugin.getUseCount());
+        pluginDto.setUsage(plugin.getUsage());
         return pluginDto;
     }
 }
