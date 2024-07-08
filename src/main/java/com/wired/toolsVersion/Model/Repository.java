@@ -18,7 +18,7 @@ public class Repository {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column()
     private String icon;
 
     @Column(nullable = false)
@@ -28,7 +28,7 @@ public class Repository {
     private String percentage;
 
     @ManyToOne
-    @JoinColumn(name = "id_project", nullable = false)
+    @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
     @ManyToMany

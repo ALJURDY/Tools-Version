@@ -20,17 +20,17 @@ public class Dependency {
     @Column(nullable = false, length = 255)
     private String name;
 
-    @Column(name = "current_version", nullable = false, length = 15)
+    @Column(name = "current_version", length = 15)
     private String currentVersion;
 
-    @Column(name = "latest_version_used", nullable = false, length = 15)
+    @Column(name = "latest_version_used", length = 15)
     private String latestVersionUsed;
 
-    @Column(name = "latest_release", nullable = false, length = 15)
+    @Column(name = "latest_release", length = 15)
     private String latestRelease;
 
     @Column(nullable = false, length = 15)
-    private int usage;
+    private int use_count;
 
     @ManyToMany(mappedBy = "dependencies")
     private List<Repository> repositories;

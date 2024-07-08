@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/repositories")
 @RequiredArgsConstructor
@@ -21,9 +22,9 @@ public class RepositoryController {
     private final DependencyService dependencyService;
     private final PluginService pluginService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<RepositoryDto> getRepositoryById(@PathVariable Long id) {
-        RepositoryDto repositoryDto = repositoryService.getRepositoryById(id);
+    @GetMapping("/{name}")
+    public ResponseEntity<RepositoryDto> getRepositoryByName(@PathVariable String name) {
+        RepositoryDto repositoryDto = repositoryService.getRepositoryByName(name);
         return ResponseEntity.ok(repositoryDto);
     }
 

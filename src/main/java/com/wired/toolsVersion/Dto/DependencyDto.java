@@ -28,5 +28,5 @@ public class DependencyDto {
     private String latestRelease;
 
     @NotNull
-    private int usage;
+    private int use_count;
 }

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Service
 public class RepositoryService {
 
@@ -21,8 +22,8 @@ public class RepositoryService {
     @Autowired
     private ProjectRepository projectRepository;
 
-    public RepositoryDto getRepositoryById(Long id) {
-        Repository repository = repositoryRepository.findById(id)
+    public RepositoryDto getRepositoryByName(String name) {
+        Repository repository = repositoryRepository.findByName(name)
                 .orElseThrow(() -> new RuntimeException("Repository not found"));
         return convertToDto(repository);
     }
@@ -78,4 +79,5 @@ public class RepositoryService {
         repositoryDto.setProjectId(repository.getProject().getId());
         return repositoryDto;
     }
+
 }

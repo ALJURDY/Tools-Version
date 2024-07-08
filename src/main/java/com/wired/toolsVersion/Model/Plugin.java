@@ -31,7 +31,7 @@ public class Plugin {
     private String latestRelease;
 
     @Column(nullable = false, length = 15)
-    private int usage;
+    private int use_count;
 
     @ManyToMany(mappedBy = "plugins")
     private List<Repository> repositories;
