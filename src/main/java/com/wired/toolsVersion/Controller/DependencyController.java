@@ -1,14 +1,48 @@
 package com.wired.toolsVersion.Controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.wired.toolsVersion.Dto.DependencyDto;
+import com.wired.toolsVersion.Service.DependencyService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/dependencies")
+@RequiredArgsConstructor
 public class DependencyController {
-    @GetMapping("/dependency")
-    public String dependency () {
-        return "Dependencies page";
+
+    private final DependencyService dependencyService;
+
+    @GetMapping
+    public List<DependencyDto> getAllDependencies() {
+        return dependencyService.getAllDependencies();
+    }
+
+    @GetMapping("/**")
+    public DependencyDto getDependencyByName(HttpServletRequest request) {
+        return dependencyService.getDependencyByName(request.getRequestURI().split("dependencies/")[1]);
+    }
+
+    @PostMapping
+    public ResponseEntity<DependencyDto> createDependency(@Valid @RequestBody DependencyDto dependencyDto) {
+        DependencyDto createdDependency = dependencyService.createDependency(dependencyDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdDependency);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<DependencyDto> updateDependency(@PathVariable Long id, @Valid @RequestBody DependencyDto dependencyDto) {
+        DependencyDto updatedDependency = dependencyService.updateDependency(id, dependencyDto);
+        return ResponseEntity.ok(updatedDependency);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteDependency(@PathVariable Long id) {
+        dependencyService.deleteDependency(id);
+        return ResponseEntity.noContent().build();
     }
 }

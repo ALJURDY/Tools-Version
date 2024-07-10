@@ -2,7 +2,8 @@ package com.wired.toolsVersion.Model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -13,13 +14,25 @@ public class Dependency {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = true)
+    private String icon;
+
+    @Column(nullable = false, length = 255)
     private String name;
-    private String usedVersion;
+
+    @Column(name = "current_version", length = 15)
     private String currentVersion;
+
+    @Column(name = "latest_version_used", length = 15)
+    private String latestVersionUsed;
+
+    @Column(name = "latest_release", length = 15)
     private String latestRelease;
 
-    @ManyToOne
-    @JoinColumn(name = "repository_id")
-    private Repository repository;
+    @Column(nullable = false, length = 15)
+    private int use_count;
+
+    @ManyToMany(mappedBy = "dependencies")
+    private List<Repository> repositories;
 }
 
