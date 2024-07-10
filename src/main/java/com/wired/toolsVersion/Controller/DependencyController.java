@@ -2,6 +2,7 @@ package com.wired.toolsVersion.Controller;
 
 import com.wired.toolsVersion.Dto.DependencyDto;
 import com.wired.toolsVersion.Service.DependencyService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,9 +23,9 @@ public class DependencyController {
         return dependencyService.getAllDependencies();
     }
 
-    @GetMapping("/{id}")
-    public DependencyDto getDependencyById(@PathVariable Long id) {
-        return dependencyService.getDependencyById(id);
+    @GetMapping("/**")
+    public DependencyDto getDependencyByName(HttpServletRequest request) {
+        return dependencyService.getDependencyByName(request.getRequestURI().split("dependencies/")[1]);
     }
 
     @PostMapping

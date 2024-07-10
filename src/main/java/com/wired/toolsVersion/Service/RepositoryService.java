@@ -1,5 +1,7 @@
 package com.wired.toolsVersion.Service;
 
+import com.wired.toolsVersion.Dto.DependencyDto;
+import com.wired.toolsVersion.Dto.PluginDto;
 import com.wired.toolsVersion.Dto.RepositoryDto;
 import com.wired.toolsVersion.Model.Project;
 import com.wired.toolsVersion.Model.Repository;
@@ -11,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 
 @Service
 public class RepositoryService {
@@ -27,6 +28,7 @@ public class RepositoryService {
                 .orElseThrow(() -> new RuntimeException("Repository not found"));
         return convertToDto(repository);
     }
+
     public List<RepositoryDto> getRepositoriesByProjectId(Long projectId) {
         return repositoryRepository.findByProjectId(projectId).stream()
                 .map(this::convertToDto)
@@ -77,7 +79,26 @@ public class RepositoryService {
         repositoryDto.setName(repository.getName());
         repositoryDto.setPercentage(repository.getPercentage());
         repositoryDto.setProjectId(repository.getProject().getId());
+        repositoryDto.setDependencies(repository.getDependencies().stream()
+                .map(dependency -> new DependencyDto(
+                        dependency.getId(),
+                        dependency.getIcon(),
+                        dependency.getName(),
+                        dependency.getCurrentVersion(),
+                        dependency.getLatestVersionUsed(),
+                        dependency.getLatestRelease(),
+                        dependency.getUse_count()))
+                .collect(Collectors.toList()));
+        repositoryDto.setPlugins(repository.getPlugins().stream()
+                .map(plugin -> new PluginDto(
+                        plugin.getId(),
+                        plugin.getIcon(),
+                        plugin.getName(),
+                        plugin.getCurrentVersion(),
+                        plugin.getLatestVersionUsed(),
+                        plugin.getLatestRelease(),
+                        plugin.getUse_count()))
+                .collect(Collectors.toList()));
         return repositoryDto;
     }
-
 }

@@ -27,6 +27,13 @@ public class DependencyService {
                 .orElseThrow(() -> new RuntimeException("Dependency not found"));
         return convertToDto(dependency);
     }
+
+    public DependencyDto getDependencyByName(String name) {
+        Dependency dependency = dependencyRepository.findByName(name)
+                .orElseThrow(() -> new RuntimeException("Dependency not found"));
+        return convertToDto(dependency);
+    }
+
     public List<DependencyDto> getDependenciesByRepositoryId(Long repositoryId) {
         return dependencyRepository.findAll().stream()
                 .map(this::convertToDto)
