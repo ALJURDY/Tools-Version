@@ -15,7 +15,7 @@ public class Plugin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = true)
+    @Column()
     private String icon;
 
     @Column(nullable = false, length = 255)

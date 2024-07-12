@@ -1,7 +1,5 @@
 package com.wired.toolsVersion.Dto;
 
-import com.wired.toolsVersion.Model.Dependency;
-import com.wired.toolsVersion.Model.Plugin;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
