@@ -81,23 +81,23 @@ public class RepositoryService {
         repositoryDto.setProjectId(repository.getProject().getId());
         repositoryDto.setDependencies(repository.getDependencies().stream()
                 .map(dependency -> new DependencyDto(
-                        dependency.getId(),
-                        dependency.getIcon(),
-                        dependency.getName(),
+                        dependency.getDependency().getId(),
+                        dependency.getDependency().getIcon(),
+                        dependency.getDependency().getName(),
                         dependency.getCurrentVersion(),
-                        dependency.getLatestVersionUsed(),
-                        dependency.getLatestRelease(),
-                        dependency.getUse_count()))
+                        dependency.getDependency().getLatestVersionUsed(),
+                        dependency.getDependency().getLatestRelease(),
+                        dependency.getDependency().getUseCount()))
                 .collect(Collectors.toList()));
         repositoryDto.setPlugins(repository.getPlugins().stream()
                 .map(plugin -> new PluginDto(
-                        plugin.getId(),
-                        plugin.getIcon(),
-                        plugin.getName(),
+                        plugin.getPlugin().getId(),
+                        plugin.getPlugin().getIcon(),
+                        plugin.getPlugin().getName(),
                         plugin.getCurrentVersion(),
-                        plugin.getLatestVersionUsed(),
-                        plugin.getLatestRelease(),
-                        plugin.getUse_count()))
+                        plugin.getPlugin().getLatestVersionUsed(),
+                        plugin.getPlugin().getLatestRelease(),
+                        plugin.getPlugin().getUseCount()))
                 .collect(Collectors.toList()));
         return repositoryDto;
     }

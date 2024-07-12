@@ -14,14 +14,10 @@ public class Dependency {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = true)
     private String icon;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String name;
-
-    @Column(name = "current_version", length = 15)
-    private String currentVersion;
 
     @Column(name = "latest_version_used", length = 15)
     private String latestVersionUsed;
@@ -29,10 +25,10 @@ public class Dependency {
     @Column(name = "latest_release", length = 15)
     private String latestRelease;
 
-    @Column(nullable = false, length = 15)
-    private int use_count;
+    @Column(name = "use_count", nullable = false, length = 15)
+    private int useCount;
 
-    @ManyToMany(mappedBy = "dependencies")
-    private List<Repository> repositories;
+    @OneToMany(mappedBy = "dependency")
+    private List<RepoDependency> repositories;
 }
 

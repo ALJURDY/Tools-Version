@@ -31,19 +31,9 @@ public class Repository {
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
-    @ManyToMany
-    @JoinTable(
-            name = "RepoDependency",
-            joinColumns = @JoinColumn(name = "id_repository"),
-            inverseJoinColumns = @JoinColumn(name = "id_dependency")
-    )
-    private List<Dependency> dependencies;
+    @OneToMany(mappedBy = "repository")
+    private List<RepoDependency> dependencies;
 
-    @ManyToMany
-    @JoinTable(
-            name = "RepoPlugin",
-            joinColumns = @JoinColumn(name = "id_repository"),
-            inverseJoinColumns = @JoinColumn(name = "id_plugin")
-    )
-    private List<Plugin> plugins;
+    @OneToMany(mappedBy = "repository")
+    private List<RepoPlugin> plugins;
 }

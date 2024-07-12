@@ -45,10 +45,9 @@ public class DependencyService {
         Dependency dependency = new Dependency();
         dependency.setName(dependencyDto.getName());
         dependency.setIcon(dependencyDto.getIcon());
-        dependency.setCurrentVersion(dependencyDto.getCurrentVersion());
         dependency.setLatestVersionUsed(dependencyDto.getLatestVersionUsed());
         dependency.setLatestRelease(dependencyDto.getLatestRelease());
-        dependency.setUse_count(dependencyDto.getUse_count());
+        dependency.setUseCount(dependencyDto.getUse_count());
 
         dependency = dependencyRepository.save(dependency);
         return convertToDto(dependency);
@@ -61,10 +60,9 @@ public class DependencyService {
 
         dependency.setName(dependencyDto.getName());
         dependency.setIcon(dependencyDto.getIcon());
-        dependency.setCurrentVersion(dependencyDto.getCurrentVersion());
         dependency.setLatestVersionUsed(dependencyDto.getLatestVersionUsed());
         dependency.setLatestRelease(dependencyDto.getLatestRelease());
-        dependency.setUse_count(dependencyDto.getUse_count());
+        dependency.setUseCount(dependencyDto.getUse_count());
 
         dependency = dependencyRepository.save(dependency);
         return convertToDto(dependency);
@@ -80,10 +78,9 @@ public class DependencyService {
         dependencyDto.setId(dependency.getId());
         dependencyDto.setName(dependency.getName());
         dependencyDto.setIcon(dependency.getIcon());
-        dependencyDto.setCurrentVersion(dependency.getCurrentVersion());
         dependencyDto.setLatestVersionUsed(dependency.getLatestVersionUsed());
         dependencyDto.setLatestRelease(dependency.getLatestRelease());
-        dependencyDto.setUse_count(dependency.getUse_count());
+        dependencyDto.setUse_count(dependency.getUseCount());
         return dependencyDto;
     }
 
