@@ -2,6 +2,7 @@ package com.wired.toolsVersion.Controller;
 
 import com.wired.toolsVersion.Dto.DependencyDto;
 import com.wired.toolsVersion.Service.DependencyService;
+import com.wired.toolsVersion.Service.RepositoryService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,8 @@ import java.util.List;
 public class DependencyController {
 
     private final DependencyService dependencyService;
+    private final RepositoryService repositoryService;
+
 
     @GetMapping
     public List<DependencyDto> getAllDependencies() {
@@ -26,6 +29,11 @@ public class DependencyController {
     @GetMapping("/**")
     public DependencyDto getDependencyByName(HttpServletRequest request) {
         return dependencyService.getDependencyByName(request.getRequestURI().split("dependencies/")[1]);
+    }
+
+    @GetMapping("/current-version/{repositoryId}/{dependencyId}")
+    public String getCurrentVersionByName(@PathVariable Long repositoryId, @PathVariable Long dependencyId) {
+        return "{\"currentVersion\": \"" + repositoryService.findCurrentVersionByRepositoryId(repositoryId, dependencyId) + "\"}";
     }
 
     @PostMapping

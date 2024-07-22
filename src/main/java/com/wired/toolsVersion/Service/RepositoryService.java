@@ -1,11 +1,13 @@
 package com.wired.toolsVersion.Service;
 
 import com.wired.toolsVersion.Dto.DependencyDto;
-import com.wired.toolsVersion.Dto.PluginDto;
 import com.wired.toolsVersion.Dto.RepositoryDto;
+import com.wired.toolsVersion.Dto.VersionDto;
 import com.wired.toolsVersion.Model.Project;
+import com.wired.toolsVersion.Model.RepoDependency;
 import com.wired.toolsVersion.Model.Repository;
 import com.wired.toolsVersion.Repository.ProjectRepository;
+import com.wired.toolsVersion.Repository.RepoDependencyRepository;
 import com.wired.toolsVersion.Repository.RepositoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,8 @@ public class RepositoryService {
 
     @Autowired
     private ProjectRepository projectRepository;
+    @Autowired
+    private RepoDependencyRepository repoDependencyRepository;
 
     public RepositoryDto getRepositoryByName(String name) {
         Repository repository = repositoryRepository.findByName(name)
@@ -34,6 +38,16 @@ public class RepositoryService {
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
+
+    public String findCurrentVersionByRepositoryId(Long repositoryId, Long dependencyId) {
+        System.out.println("Searching current version ...................");
+        System.out.println("repositoryId = " + repositoryId);
+        System.out.println("dependencyId = " + dependencyId);
+        RepoDependency repoDependency = repoDependencyRepository.findCurrentVersionByRepositoryIdAndDependencyId(repositoryId, dependencyId)
+                .orElseThrow(() -> new RuntimeException("RepoDependency not found"));
+        return repoDependency.getCurrentVersion();
+    }
+
 
     @Transactional
     public RepositoryDto createRepository(RepositoryDto repositoryDto) {
@@ -79,26 +93,45 @@ public class RepositoryService {
         repositoryDto.setName(repository.getName());
         repositoryDto.setPercentage(repository.getPercentage());
         repositoryDto.setProjectId(repository.getProject().getId());
-        repositoryDto.setDependencies(repository.getDependencies().stream()
-                .map(dependency -> new DependencyDto(
-                        dependency.getDependency().getId(),
-                        dependency.getDependency().getIcon(),
-                        dependency.getDependency().getName(),
-                        dependency.getCurrentVersion(),
-                        dependency.getDependency().getLatestVersionUsed(),
-                        dependency.getDependency().getLatestRelease(),
-                        dependency.getDependency().getUseCount()))
-                .collect(Collectors.toList()));
-        repositoryDto.setPlugins(repository.getPlugins().stream()
-                .map(plugin -> new PluginDto(
-                        plugin.getPlugin().getId(),
-                        plugin.getPlugin().getIcon(),
-                        plugin.getPlugin().getName(),
-                        plugin.getCurrentVersion(),
-                        plugin.getPlugin().getLatestVersionUsed(),
-                        plugin.getPlugin().getLatestRelease(),
-                        plugin.getPlugin().getUseCount()))
-                .collect(Collectors.toList()));
+
+        // Convert dependencies
+        List<DependencyDto> dependencyDtos = repository.getDependencies().stream().map(dependency -> {
+            DependencyDto dependencyDto = new DependencyDto();
+            dependencyDto.setId(dependency.getDependency().getId());
+            dependencyDto.setIcon(dependency.getDependency().getIcon());
+            dependencyDto.setName(dependency.getDependency().getName());
+            dependencyDto.setLatestVersionUsed(dependency.getDependency().getLatestVersionUsed());
+            dependencyDto.setLatestRelease(dependency.getDependency().getLatestRelease());
+            dependencyDto.setUseCount(dependency.getDependency().getUseCount());
+
+            // Map current versions
+            List<VersionDto> versionDtos = dependency.getDependency().getRepositories().stream().map(repoDependency -> {
+                VersionDto versionDto = new VersionDto();
+                versionDto.setVersionNumber(repoDependency.getCurrentVersion());
+                versionDto.setRepositoryNames(
+                        repoDependency.getDependency().getRepositories().stream()
+                                .map(x -> x.getRepository().getName())
+                                .collect(Collectors.toList())
+                );
+                return versionDto;
+            }).collect(Collectors.toList());
+
+            dependencyDto.setCurrentVersions(versionDtos);
+            return dependencyDto;
+        }).collect(Collectors.toList());
+
+        repositoryDto.setDependencies(dependencyDtos);
+
+        //        repositoryDto.setPlugins(repository.getPlugins().stream()
+        //                .map(plugin -> new PluginDto(
+        //                        plugin.getPlugin().getId(),
+        //                        plugin.getPlugin().getIcon(),
+        //                        plugin.getPlugin().getName(),
+        //                        // je mets quoi ici
+        //                        plugin.getPlugin().getLatestVersionUsed(),
+        //                        plugin.getPlugin().getLatestRelease(),
+        //                        plugin.getPlugin().getUseCount()))
+        //                .collect(Collectors.toList()));
         return repositoryDto;
     }
 }

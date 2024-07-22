@@ -62,8 +62,8 @@ INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (47, 'Rep
 INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (48, 'Repo1.png', 'new-repo-nu1', '61', 3);
 INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (49, 'Repo1.png', 'new-repo-xi1', '26', 3);
 INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (50, 'Repo1.png', 'new-repo-omicron1', '86', 3);
-INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (51, 'Repo11.png', 'new-repo-pi1', '43', 3);
-INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (52, 'Repo11.png', 'new-repo-rho1', '93', 3);
+INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (51, 'Repo1.png', 'new-repo-pi1', '43', 3);
+INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (52, 'Repo1.png', 'new-repo-rho1', '93', 3);
 INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (53, 'lib1.png', 'new-repo-sigma1', '46', 3);
 INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (54, 'lib1.png', 'new-repo-tau1', '99', 3);
 INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (55, 'service1.png', 'new-repo-upsilon1', '53', 3);
@@ -92,7 +92,7 @@ INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (78, 'Clo
 INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (79, 'CloudRepo.png', 'new-repo-upsilon2', '87', 5);
 INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (80, 'lib1.png', 'new-repo-phi2', '40', 5);
 INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (81, 'lib1.png', 'new-repo-chi2', '82', 5);
-INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (82, 'service 1.png', 'new-repo-psi2', '29', 5);
+INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (82, 'service1.png', 'new-repo-psi2', '29', 5);
 INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (83, 'Repo1.png', 'new-repo-omega2', '96', 6);
 INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (84, 'Repo1.png', 'new-repo-alpha3', '10', 6);
 INSERT INTO repository (id, icon, name, percentage, project_id) VALUES (85, 'CloudRepo.png', 'new-repo-beta3', '49', 6);
@@ -180,9 +180,9 @@ INSERT INTO plugin (id, icon, name,latest_version_used,latest_release, use_count
 INSERT INTO plugin (id, icon, name,latest_version_used,latest_release, use_count) VALUES (23, 'node.png','angular/scaffold','1.0.0','1.0.1', 25);
 
 
-INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (1, 1, '1.0.0');
-INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (1, 4, '1.0.0');
-INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (1, 9, '1.0.0');
+INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (1, 1, '1.3.3');
+INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (1, 4, '2.0.0');
+INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (1, 9, '4.2.3');
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (1, 13, '1.0.0');
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (1, 17, '1.0.0');
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (1, 58, '1.0.0');
@@ -193,7 +193,7 @@ INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALU
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (1, 91, '1.0.0');
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (1, 99, '1.0.0');
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (2, 2, '1.0.0');
-INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (2, 1, '1.0.0');
+INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (2, 1, '45.0.0');
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (2, 30, '1.0.0');
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (2, 37, '1.0.0');
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (2, 39, '1.0.0');
@@ -210,7 +210,7 @@ INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALU
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (2, 90, '1.0.0');
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (2, 91, '1.0.0');
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (2, 100, '1.0.0');
-INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (3, 1, '1.0.0');
+INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (3, 1, '1.5.2');
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (3, 6, '1.0.0');
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (3, 8, '1.0.0');
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (3, 12, '1.0.0');
@@ -241,3 +241,38 @@ INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALU
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (4, 87, '1.0.0');
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (4, 97, '1.0.0');
 INSERT INTO repo_dependency (id_dependency, id_repository, current_version) VALUES  (4, 98, '1.0.0');
+
+
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (1, 1, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (1, 4, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (1, 7, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (1, 10, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (1, 17, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (1, 25, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (1, 85, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (1, 99, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (2, 2, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (2, 3, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (2, 4, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (2, 5, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (2, 6, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (2, 7, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (2, 8, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (3, 9, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (3, 1, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (3, 2, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (3, 3, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (3, 4, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (3, 5, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (3, 6, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (3, 7, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (4, 8, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (4, 9, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (4, 1, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (4, 2, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (4, 3, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (4, 6, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (4, 7, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (5, 8, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (5, 1, '1.0.0');
+INSERT INTO repo_plugin (id_plugin, id_repository, current_version) VALUES  (5, 2, '1.0.0');
